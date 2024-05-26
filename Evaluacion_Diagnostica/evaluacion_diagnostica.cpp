@@ -7,18 +7,19 @@ using namespace std;
 #define MAX_SIZE 5
 
 int main() {
-    Fraccion a(17, 2), b(3,4), c, arreglo[MAX_SIZE];
-    
-    a.print();
-    b.print();
+    MatFrac matriz;
+    MatFrac matriz2;
 
-    c = Fraccion::suma(a, b);
-    c.print();
+	if (!matriz.loadFile("matriz1.txt"))
+		return 0;
+	matriz.print();
 
-    for (int i = 0; i < MAX_SIZE; i++) {
-        arreglo[i].print();
-    
-    }
-    return 0;
-
+	// TODO leer matriz2.txt
+    if (!matriz.loadFile("matriz2.txt"))
+		return 0;
+	matriz.print();
+	// TODO sumar matriz 1 y matriz 2
+    //MatFrac matrizSuma = Fraccion::suma(matriz, matriz2);
+	// TODO guardar matriz resultante en matriz3.txt
+	return 0;
 }

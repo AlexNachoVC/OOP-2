@@ -17,9 +17,11 @@ public:
     MatFrac(unsigned int nRenglones, unsigned int nColumnas)  {
         if (nRenglones > MAX_REN) {
             cout << "Renglones excede " << MAX_REN << ", limitado." << endl;
+            renglones = MAX_REN;
         }
         if (nColumnas > MAX_COL) {
             cout << "Columnas excede " << MAX_COL << ", limitado." << endl;
+            columnas = MAX_COL;
         }
         renglones = nRenglones;
         columnas = nColumnas;
@@ -28,7 +30,7 @@ public:
 
     bool loadFile(string fileName) {
         ifstream file;
-        int tmpRen = 0, tmpCol = 0;
+        unsigned int tmpRen = 0, tmpCol = 0;
 
         file.open(fileName, ios::in);
         if (!file.is_open()) {
@@ -37,13 +39,13 @@ public:
         }
 
         if (!(file >> tmpRen)) {
-            cout << "No se pudo leer la cantidad de renglones" << endl;
+            cout << "No se pudo leer la cantidad de renglones en " << fileName << endl;
             file.close();
             return false;
         }
 
         if (!(file >> tmpCol)) {
-            cout << "No se pudo leer la cantidad de columnas" << endl;
+            cout << "No se pudo leer la cantidad de columnas en " << fileName << endl;
             file.close();
             return false;
         }
@@ -54,11 +56,14 @@ public:
             return false;
         }
 
-        for (unsigned int i = 0; i < tmpCol; i++) {
-            for (unsigned int j = 0; j < tmpRen; j++) {
-                int a, b;
+        renglones = tmpRen;
+        columnas = tmpCol;
 
-                if ((!(file >> a)) || (!(file >> b))) {
+        for (unsigned int i = 0; i < tmpRen; i++) {
+            for (unsigned int j = 0; j < tmpCol; j++) {
+                int den, num;
+
+                if ((!(file >> den)) || (!(file >> num))) {
                     cout << "No se pudieron cargar las fracciones" << endl;
                     columnas = 0;
                     renglones = 0;
@@ -66,7 +71,7 @@ public:
                     return false;
                 }
 
-                Fraccion tmp(a, b);
+                Fraccion tmp(den, num);
                 datos[i][j] = tmp;
             }
         }
@@ -77,6 +82,12 @@ public:
     }
 
     void print() {
+        for (unsigned int i = 0; i < columnas; i++) {
+            for (unsigned int j = 0; j < renglones; j++) {
+                datos[i][j].print();
+            }
+            cout << "\n";
+        }
     }
 
 private:

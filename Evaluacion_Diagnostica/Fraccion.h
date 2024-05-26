@@ -27,10 +27,17 @@ public:
     }
 
     void print() {
-        cout << numerador;
+        /*cout << numerador;
         if (denominador != 1) {
-           cout << "/" << denominador << endl;
-        } 
+           cout << "/" << denominador;
+           cout << "\n";
+        }*/ 
+        // Modifique este codigo, para poder mostrar numeros enteros, en caso de que asi de la simplificacion. 
+        if (denominador != 1) {
+        cout << numerador << "/" << denominador << "\n";
+        } else {
+            cout << numerador << "\n";
+        }
     }
 
     static Fraccion suma(Fraccion A, Fraccion B) {
@@ -52,7 +59,17 @@ private:
             denominador *= -1;
         }
 
-        mcdVal = mcd(numerador, denominador);
+        if (numerador == denominador) {
+            numerador = 1;
+            denominador = 1;
+            return;
+        }
+
+        mcdVal = mcd(abs(numerador), abs(denominador));
+        if (mcdVal == 1) {
+            return;
+        }
+        
         numerador /= mcdVal;
         denominador /= mcdVal;
         
