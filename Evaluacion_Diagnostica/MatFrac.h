@@ -109,6 +109,21 @@ public:
         return matrizResultante;
     }
 
+    bool saveToFile(string fileName) {
+        ofstream file("matrizResultante.txt");
+
+        file << renglones << " " << columnas << "\n";
+        for (unsigned int i = 0; i < renglones; i++) {
+            for (unsigned int j = 0; j < columnas; j++) {
+                file << datos[i][j].getNumerador() << "/" << datos[i][j].getDenominador() << " ";
+            }
+            file << "\n";
+        }
+
+        file.close();
+        return true;
+        }
+
     
 
 private:

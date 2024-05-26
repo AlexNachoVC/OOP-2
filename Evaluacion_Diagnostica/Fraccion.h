@@ -18,6 +18,14 @@ public:
         }
         simplifica();
     }
+
+    int getNumerador() const {
+        return numerador;
+    }
+
+    int getDenominador() const {
+        return denominador;
+    }
     /*  Fraccion(int numerador, int denominador) {
         this->numerador = numerador;
         this->denominador = denominador;
@@ -29,14 +37,14 @@ public:
     void print() {
         /*cout << numerador;
         if (denominador != 1) {
-           cout << "/" << denominador;
-           cout << "\n";
-        }*/ 
+           cout << "/" << denominador << endl;
+           cout << " ";
+        }*/
         // Modifique este codigo, para poder mostrar numeros enteros, en caso de que asi de la simplificacion. 
         if (denominador != 1) {
-        cout << numerador << "/" << denominador << "\n";
+        cout << numerador << "/" << denominador << endl;
         } else {
-            cout << numerador << "\n";
+            cout << numerador << " ";
         }
     }
 
