@@ -30,7 +30,7 @@ public:
 
     bool loadFile(string fileName) {
         ifstream file;
-        unsigned int tmpRen = 0, tmpCol = 0;
+        int tmpRen = 0, tmpCol = 0;
 
         file.open(fileName, ios::in);
         if (!file.is_open()) {
@@ -56,14 +56,15 @@ public:
             return false;
         }
 
-        renglones = tmpRen;
+        
         columnas = tmpCol;
+        renglones = tmpRen;
 
-        for (unsigned int i = 0; i < tmpRen; i++) {
-            for (unsigned int j = 0; j < tmpCol; j++) {
-                int den, num;
+        for (unsigned int i = 0; i < tmpCol; i++) {
+            for (unsigned int j = 0; j < tmpRen; j++) {
+                int a, b;
 
-                if ((!(file >> den)) || (!(file >> num))) {
+                if ((!(file >> a)) || (!(file >> b))) {
                     cout << "No se pudieron cargar las fracciones" << endl;
                     columnas = 0;
                     renglones = 0;
@@ -71,7 +72,7 @@ public:
                     return false;
                 }
 
-                Fraccion tmp(den, num);
+                Fraccion tmp(a, b);
                 datos[i][j] = tmp;
             }
         }
@@ -82,13 +83,33 @@ public:
     }
 
     void print() {
-        for (unsigned int i = 0; i < columnas; i++) {
-            for (unsigned int j = 0; j < renglones; j++) {
+        for (unsigned int i = 0; i < renglones; i++) {
+            for (unsigned int j = 0; j < columnas; j++) {
                 datos[i][j].print();
             }
             cout << "\n";
         }
     }
+
+    static MatFrac sumaMatriz(MatFrac matriz1,  MatFrac matriz2) {
+
+        if (matriz1.renglones != matriz2.renglones || matriz1.columnas != matriz2.columnas) {
+           cout << "Las matrices deben tener las mismas dimensiones para poder sumarlas" << endl;
+        }
+
+        MatFrac matrizResultante(matriz1.renglones, matriz2.columnas);
+
+        for (unsigned int i = 0; i < matriz1.renglones; i++) {
+            for (unsigned int j = 0; j < matriz1.columnas; j++) {
+
+                matrizResultante.datos[i][j] = Fraccion::suma(matriz1.datos[i][j], matriz2.datos[i][j]);
+            }
+        }
+
+        return matrizResultante;
+    }
+
+    
 
 private:
         unsigned int renglones;

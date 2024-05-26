@@ -12,14 +12,16 @@ int main() {
 
 	if (!matriz.loadFile("matriz1.txt"))
 		return 0;
-	matriz.print();
+	//matriz.print();
 
 	// TODO leer matriz2.txt
-    if (!matriz.loadFile("matriz2.txt"))
+    if (!matriz2.loadFile("matriz2.txt"))
 		return 0;
-	matriz.print();
+	//matriz2.print();
+
 	// TODO sumar matriz 1 y matriz 2
-    //MatFrac matrizSuma = Fraccion::suma(matriz, matriz2);
+    MatFrac matrizResultante = MatFrac::sumaMatriz(matriz, matriz2);
+	matrizResultante.print();
 	// TODO guardar matriz resultante en matriz3.txt
 	return 0;
 }
