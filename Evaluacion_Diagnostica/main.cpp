@@ -10,7 +10,7 @@ int main() {
     MatFrac matriz;
     MatFrac matriz2;
 
-	if (!matriz.loadFile("matriz1_1.txt"))
+	if (!matriz.loadFile("matriz1.txt"))
 		return 0;
 	cout << "Matriz 1:" << endl;
 	matriz.print();
@@ -18,13 +18,15 @@ int main() {
 	cout << "\n" << "+" << "\n \n";
 
 	// TODO leer matriz2.txt
-    if (!matriz2.loadFile("matriz2_2.txt"))
+    if (!matriz2.loadFile("matriz2.txt"))
 		return 0;
 	cout << "Matriz 2:" << endl;
 	matriz2.print();
 
 	// TODO sumar matriz 1 y matriz 2
     MatFrac matrizResultante = MatFrac::sumaMatriz(matriz, matriz2);
+
+	cout << "\n" << "=" << "\n \n";
 	cout << "Matriz Resultante:" << endl;
 	matrizResultante.print();
 

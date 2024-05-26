@@ -1,6 +1,7 @@
 #pragma once
 #include "Fraccion.h"
 #include <fstream> 
+#include <cstdlib>
 
 using namespace std;
 
@@ -95,6 +96,7 @@ public:
 
         if (matriz1.renglones != matriz2.renglones || matriz1.columnas != matriz2.columnas) {
            cout << "Las matrices deben tener las mismas dimensiones para poder sumarlas" << endl;
+           exit(1);
         }
 
         MatFrac matrizResultante(matriz1.renglones, matriz2.columnas);

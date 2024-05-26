@@ -8,6 +8,12 @@ public:
         numerador = 0;
         denominador = 1;
     }
+
+    /*  Fraccion(int numerador, int denominador) {
+        this->numerador = numerador;
+        this->denominador = denominador;
+    }*/
+   
     Fraccion(int nNumerador, int nDenominador) {
         numerador = nNumerador;
         if (nDenominador != 0) {
@@ -18,7 +24,7 @@ public:
         }
         simplifica();
     }
-
+    
     int getNumerador() const {
         return numerador;
     }
@@ -26,11 +32,7 @@ public:
     int getDenominador() const {
         return denominador;
     }
-    /*  Fraccion(int numerador, int denominador) {
-        this->numerador = numerador;
-        this->denominador = denominador;
-    }*/
-   
+    
     ~Fraccion() {
     }
 
@@ -40,11 +42,11 @@ public:
            cout << "/" << denominador << endl;
            cout << " ";
         }*/
-        // Modifique este codigo, para poder mostrar numeros enteros, en caso de que asi de la simplificacion. 
+        // Modifique este codigo, para poder mostrar numeros enteros, en caso de que asi de la simplificacion (creo ya funcionaba, pero me estaba dando errores, asi que lo cambie). Y use tabs para poder darle formato de matriz al output.
         if (denominador != 1) {
-        cout << numerador << "/" << denominador << endl;
+        cout << numerador << "/" << denominador << "\t";
         } else {
-            cout << numerador << " ";
+            cout << numerador << "\t";
         }
     }
 
