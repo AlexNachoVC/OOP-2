@@ -33,7 +33,7 @@ Persona* crearPersona() {
 
     ptr->nombre = "Juan";
 
-    return p;
+    return ptr;
 }
 
 int main() {
@@ -44,9 +44,10 @@ int main() {
     if(!ptr)
         return 0;
 
-    cout << "(main) Nombre: " << p->nombre << "\n";
+    cout << "(main) Nombre: " << ptr->nombre << "\n";
     // Aca la liberamos correctamente...
     delete ptr;
+    ptr = nullptr;
     // Y acá cometemos el error al liberar por segunda vez
     delete ptr;
     cout << "terminando programa\n";

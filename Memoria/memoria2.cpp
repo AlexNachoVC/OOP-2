@@ -13,7 +13,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 1000000000
+#define MAX_SIZE 10000000
 
 int main() {
     long int* arrayPtr = nullptr;
@@ -22,7 +22,7 @@ int main() {
         << (sizeof(long int) * MAX_SIZE) / (1024 * 1024 * 1024)
         << " Gbytes\n";
 
-    arrayPtr = new(nothrow) string[MAX_SIZE];
+    arrayPtr = new(nothrow) long int[MAX_SIZE];
     if (!arrayPtr) {
         cerr << "Not enough memory" << endl;
         return 1;

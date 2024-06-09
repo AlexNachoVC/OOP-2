@@ -23,6 +23,8 @@ Persona* crearPersona() {
     Persona* ptr = nullptr;
 
     ptr = new(nothrow) Persona();
+    cout << "crear persona: " << ptr << endl;
+
     if(!ptr) {
         cout << "Not enough memory\n";
     }
@@ -33,7 +35,8 @@ int main() {
     Persona* ptr = nullptr;
 
     ptr = crearPersona();
-    
+        cout << "main: " << ptr << endl;
+
     if(ptr) {
         delete ptr;
         ptr = nullptr;

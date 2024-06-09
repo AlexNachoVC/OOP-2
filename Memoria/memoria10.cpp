@@ -41,6 +41,11 @@ int main() {
     Persona* p = nullptr;
 
     p = crearPersona("Juan");  // primera asignación
+    if (p) {
+        delete p;
+        p = nullptr;
+    }
+    
     p = crearPersona("Pedro");  // segunda asignación
 
     if (p) {

@@ -12,7 +12,7 @@
  * La guía de estilo no se sigue con las declaraciones
  * para mantener la brevedad y simpleza en los ejemplos
  * 
- */
+ */ 
 
 #include <iostream>
 
