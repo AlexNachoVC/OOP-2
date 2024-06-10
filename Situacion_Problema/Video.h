@@ -13,7 +13,7 @@ protected:
 
 public: 
     Video();
-    Video(int id, string nombre, int duracion, string genero);
+    Video(int id, string nombre, int duracion, string genero, float calificacion);
     int getId();
     string getNombre();
     int getDuracion();

@@ -54,4 +54,36 @@ int main() {
         delete [] serieArray;
         return 0;
     }
+
+    int opcion = 0;
+    while (opcion != 6) {
+        cout << "1. Mostrar videos con cierta calificación o género\n";
+        cout << "2. Mostrar episodios de una serie con cierta calificación\n";
+        cout << "3. Mostrar películas con cierta calificación\n";
+        cout << "4. Calificar un video\n";
+        cout << "5. Salir\n";
+        cout << "Selecciona una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                // Implementa la funcionalidad para mostrar videos con cierta calificación o género
+                break;
+            case 2:
+                // Implementa la funcionalidad para mostrar episodios de una serie con cierta calificación
+                break;
+            case 3:
+                // Implementa la funcionalidad para mostrar películas con cierta calificación
+                break;
+            case 4:
+                // Implementa la funcionalidad para calificar un video
+                break;
+            case 5:
+                std::cout << "Saliendo...\n";
+                break;
+            default:
+                std::cout << "Opción no válida. Por favor, intenta de nuevo.\n";
+                break;
+        }
+    }
 }

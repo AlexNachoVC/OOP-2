@@ -80,7 +80,7 @@ bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, uns
     return true;
 }
 
-bool loadSeriesFromCSV(const std::string& fileName, Serie *serieArray, unsigned int arraySize) {
+bool loadSeriesFromCSV(const std::string& fileName, Episodio *episodioArray, unsigned int arraySize) {
     std::ifstream file(fileName);
     std::string line;
     unsigned int size = 0;
@@ -100,7 +100,7 @@ bool loadSeriesFromCSV(const std::string& fileName, Serie *serieArray, unsigned 
     std::cout << "Cargando archivo: " << fileName << std::endl;
 
     while (std::getline(file, line) && size < arraySize) {
-        Serie nSerie;
+        Episodio nEpisodio;
         std::stringstream ss(line);
         std::string cell;
         int campo = 0, errores = 0;
@@ -111,22 +111,22 @@ bool loadSeriesFromCSV(const std::string& fileName, Serie *serieArray, unsigned 
 
             switch(campo) {
                 case 0: 
-                    nSerie.setId(std::stoi(cell)); 
+                    nEpisodio.setId(std::stoi(cell)); 
                     break;
                 case 1: 
-                    nSerie.setNombre(cell); 
+                    nEpisodio.setNombre(cell); 
                     break;
                 case 2: 
-                    nSerie.setDuracion(std::stof(cell)); 
+                    nEpisodio.setDuracion(std::stof(cell)); 
                     break;
                 case 3: 
-                    nSerie.setGenero(cell); 
+                    nEpisodio.setGenero(cell); 
                     break;
                 case 4: 
-                    nSerie.setEpisodioTitulo(cell); 
+                    nEpisodio.setEpisodioTitulo(cell); 
                     break;
                 case 5: 
-                    nSerie.setTemporada(std::stoi(cell)); 
+                    nEpisodio.setTemporada(std::stoi(cell)); 
                     break;
                 default: errores++; break;
             }
@@ -134,7 +134,7 @@ bool loadSeriesFromCSV(const std::string& fileName, Serie *serieArray, unsigned 
         }
 
         if(errores == 0) {
-            serieArray[size++] = nSerie;
+            episodioArray[size++] = nEpisodio;
         } else {
             std::cerr << "Error al leer la línea: " << line << std::endl;
         }

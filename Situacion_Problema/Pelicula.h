@@ -7,7 +7,7 @@ using namespace std;
 class Pelicula : public Video {
 public:
     Pelicula();
-    Pelicula(int id, string nombre, int duracion, string genero);
+    Pelicula(int id, string nombre, int duracion, string genero, float calificacion);
     void mostrar();
     void setId(int id);
     void setNombre(string nombre);

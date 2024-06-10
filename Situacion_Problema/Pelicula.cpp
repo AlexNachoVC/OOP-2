@@ -2,9 +2,9 @@
 
 using namespace std;
 
-Pelicula::Pelicula() : Video(0, "", 0, "") {}
+Pelicula::Pelicula() : Video(0, "", 0, "", 0.0) {}
 
-Pelicula::Pelicula(int id, string nombre, int duracion, string genero) : Video(id, nombre, duracion, genero)
+Pelicula::Pelicula(int id, string nombre, int duracion, string genero, float calificacion) : Video(id, nombre, duracion, genero, calificacion)
 {
 }
 

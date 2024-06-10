@@ -4,6 +4,7 @@
 #include "Serie.h"
 #include "Pelicula.h"
 #include "Serie.h"
+#include "Episodio.h"
 
 #define PELICULA_ATTRIB_SIZE 4
 
