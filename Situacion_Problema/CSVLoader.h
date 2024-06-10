@@ -6,7 +6,8 @@
 #include "Serie.h"
 #include "Episodio.h"
 
-#define PELICULA_ATTRIB_SIZE 4
+#define PELICULA_ATTRIB_SIZE 5
+#define SERIE_ATTRIB_SIZE 7
 
 
 bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, unsigned int arraySize);

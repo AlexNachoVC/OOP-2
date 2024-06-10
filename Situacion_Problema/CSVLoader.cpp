@@ -42,10 +42,13 @@ bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, uns
                     nPelicula.setNombre(cell);
                     break;
                 case 2:
-                    nPelicula.setDuracion(std::stoi(cell.c_str()));
+                    nPelicula.setDuracion(std::stoi(cell));
                     break;
                 case 3:
                     nPelicula.setGenero(cell);
+                    break;
+                case 4:
+                    nPelicula.setCalificacion(std::stof(cell));
                     break;
 
                 default:
@@ -128,15 +131,28 @@ bool loadSeriesFromCSV(const std::string& fileName, Episodio *episodioArray, uns
                 case 5: 
                     nEpisodio.setTemporada(std::stoi(cell)); 
                     break;
+                case 6: 
+                    nEpisodio.setCalificacion(std::stof(cell));
+                    break;
                 default: errores++; break;
             }
             campo++;
         }
 
-        if(errores == 0) {
-            episodioArray[size++] = nEpisodio;
-        } else {
-            std::cerr << "Error al leer la línea: " << line << std::endl;
+        if(errores || campo != SERIE_ATTRIB_SIZE) {
+            std::cerr << "Error en la linea: " << std::endl << line << std::endl;
+            file.close();
+            return false;
+        }
+
+        if(size < arraySize) {
+            episodioArray[size] = nEpisodio;
+            size ++;
+        }
+        else {
+            std::cerr << "Error, el arreglo es muy pequeño" << std::endl;
+            file.close();
+            return false;
         }
     }
 
