@@ -20,3 +20,27 @@ Episodio Serie::getEpisodio(int index) const {
 int Serie::getNumEpisodios() const {
     return numEpisodios;
 }
+
+void Serie::setId(int id) {
+    this->id = id;
+}
+
+void Serie::setNombre(string nombre) {
+    this->nombre = nombre;
+}
+
+void Serie::setDuracion(int duracion) {
+    this->duracion = duracion;
+}
+
+void Serie::setGenero(string genero) {
+    this->genero = genero;
+}
+
+void Serie::setEpisodioTitulo(string titulo) {
+    this->episodio.setTitulo(titulo);
+}
+
+void Serie::setTemporada(int temporada) {
+    this->episodio.setTemporada(temporada);
+}

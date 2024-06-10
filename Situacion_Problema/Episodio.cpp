@@ -9,3 +9,11 @@ string Episodio::getTitulo() {
 int Episodio::getTemporada() {
     return temporada; 
 }
+
+void Episodio::setTitulo(string titulo) {
+    this->titulo = titulo;
+}
+
+void Episodio::setTemporada(int temporada) {
+    this->temporada = temporada;
+}

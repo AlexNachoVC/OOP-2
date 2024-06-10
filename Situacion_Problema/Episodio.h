@@ -13,4 +13,7 @@ public:
 
     string getTitulo();
     int getTemporada();
+
+    void setTitulo(string titulo);
+    void setTemporada(int temporada);
 };
