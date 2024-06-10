@@ -1,6 +1,6 @@
 #include "Episodio.h"
 
-Episodio::Episodio(string titulo, int temporada, int id, string nombre, string genero, int duracion, float calificacion)
+Episodio::Episodio(string titulo, int temporada, string id, string nombre, string genero, int duracion, float calificacion)
     : Video(id, nombre, duracion, genero, calificacion), titulo(titulo), temporada(temporada) {}
 
 string Episodio::getTitulo() {
@@ -21,7 +21,7 @@ void Episodio::mostrar() {
          << "Calificacion Episodio: " << calificacion << endl;
 }
 
-void Episodio::setId(int id) {
+void Episodio::setId(string id) {
     this->id = id;
 }
 

@@ -2,9 +2,9 @@
 
 using namespace std;
 
-Pelicula::Pelicula() : Video(0, "", 0, "", 0.0) {}
+Pelicula::Pelicula() : Video("", "", 0, "", 0.0) {}
 
-Pelicula::Pelicula(int id, string nombre, int duracion, string genero, float calificacion) : Video(id, nombre, duracion, genero, calificacion)
+Pelicula::Pelicula(string id, string nombre, int duracion, string genero, float calificacion) : Video(id, nombre, duracion, genero, calificacion)
 {
 }
 
@@ -16,8 +16,8 @@ void Pelicula::mostrar() {
          << "Calificacion Pelicula: " << calificacion << endl;
 }
 
-void Pelicula::setId(int id) { 
-    this->id = id; 
+void Pelicula::setId(string id) { 
+    this->id = id;
 }
 void Pelicula::setNombre(string nombre) { 
     this->nombre = nombre; 

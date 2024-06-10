@@ -36,7 +36,7 @@ bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, uns
             // por simplicidad
             switch(campo) {
                 case 0:
-                    nPelicula.setId(std::stoi(cell));
+                    nPelicula.setId(cell);
                     break;
                 case 1:
                     nPelicula.setNombre(cell);
@@ -114,7 +114,7 @@ bool loadSeriesFromCSV(const std::string& fileName, Episodio *episodioArray, uns
 
             switch(campo) {
                 case 0: 
-                    nEpisodio.setId(std::stoi(cell)); 
+                    nEpisodio.setId(cell); 
                     break;
                 case 1: 
                     nEpisodio.setNombre(cell); 

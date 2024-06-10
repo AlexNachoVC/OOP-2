@@ -2,9 +2,9 @@
 
 using namespace std;
 
-Video::Video() : id(0), nombre(""), duracion(0), genero(""), calificacion(0.0f) {}
+Video::Video() : id(""), nombre(""), duracion(0), genero(""), calificacion(0.0f) {}
 
-Video::Video(int id, string nombre, int duracion, string genero, float calificacion) {
+Video::Video(string id, string nombre, int duracion, string genero, float calificacion) {
         this->id = id;
         this->nombre = nombre;
         this->duracion = duracion;
@@ -12,7 +12,7 @@ Video::Video(int id, string nombre, int duracion, string genero, float calificac
         this->calificacion = 0.0; 
 }
 
-int Video::getId() {
+string Video::getId() {
     return id;
 }
 

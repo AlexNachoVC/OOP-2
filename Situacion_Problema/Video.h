@@ -5,7 +5,7 @@ using namespace std;
 
 class Video {
 protected: 
-    int id;
+    string id;
     string nombre;
     int duracion;
     string genero;
@@ -13,8 +13,8 @@ protected:
 
 public: 
     Video();
-    Video(int id, string nombre, int duracion, string genero, float calificacion);
-    int getId();
+    Video(string id, string nombre, int duracion, string genero, float calificacion);
+    string getId();
     string getNombre();
     int getDuracion();
     string getGenero();

@@ -33,7 +33,7 @@ int main() {
     }
 
 
-    Serie *serieArray = nullptr;
+    Episodio *episodioArray = nullptr;
     int dataSizeSerie = 0;
 
     dataSizeSerie = countDataLinesInCSV(SERIES_FILE);
@@ -43,15 +43,15 @@ int main() {
     }
 
     cout << "series.csv tiene: " << dataSizeSerie << " entradas\n";
-    serieArray = new(nothrow) Serie[dataSizeSerie];
-    if(serieArray == nullptr) {
-        cerr << "No hubo memoria para el arreglo de " << MOVIES_FILE << "\n";
+    episodioArray = new(nothrow) Episodio[dataSizeSerie];
+    if(episodioArray == nullptr) {
+        cerr << "No hubo memoria para el arreglo de " << SERIES_FILE << "\n";
         return 0;
     }
 
-    if(!loadSeriesFromCSV(SERIES_FILE, serieArray, dataSizeSerie)) {
-        cerr << "Error al cargar el data set de " << MOVIES_FILE << "\n";
-        delete [] serieArray;
+    if(!loadSeriesFromCSV(SERIES_FILE, episodioArray, dataSizeSerie)) {
+        cerr << "Error al cargar el data set de " << SERIES_FILE << "\n";
+        delete [] episodioArray;
         return 0;
     }
 

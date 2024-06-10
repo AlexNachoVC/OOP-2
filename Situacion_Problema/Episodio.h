@@ -7,14 +7,14 @@ private:
     int temporada; 
 
 public: 
-    Episodio(string titulo = "", int temporada = 0, int id = 0, string nombre = "", string genero = "", int duracion = 0, float calificacion = 0.0);
+    Episodio(string titulo = "", int temporada = 0, string id = "", string nombre = "", string genero = "", int duracion = 0, float calificacion = 0.0);
 
     string getTitulo();
     int getTemporada();
 
     void mostrar();
 
-    void setId(int id);
+    void setId(string id);
     void setNombre(string nombre);
     void setDuracion(int duracion);
     void setGenero(string genero);

@@ -11,6 +11,6 @@
 
 
 bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, unsigned int arraySize);
-bool loadSeriesFromCSV(const std::string& fileName, Serie *serieArray, unsigned int arraySize);
+bool loadSeriesFromCSV(const std::string& fileName, Episodio *episodioArray, unsigned int arraySize);
 int countDataLinesInCSV(const std::string& fileName);
 
