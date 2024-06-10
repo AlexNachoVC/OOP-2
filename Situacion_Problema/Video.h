@@ -12,6 +12,7 @@ protected:
     float calificacion;
 
 public: 
+    Video();
     Video(int id, string nombre, int duracion, string genero);
     int getId();
     string getNombre();

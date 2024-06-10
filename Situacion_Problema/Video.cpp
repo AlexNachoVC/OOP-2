@@ -2,6 +2,8 @@
 
 using namespace std;
 
+Video::Video() : id(0), nombre(""), duracion(0), genero(""), calificacion(0.0f) {}
+
 Video::Video(int id, string nombre, int duracion, string genero) {
         this->id = id;
         this->nombre = nombre;
