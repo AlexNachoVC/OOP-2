@@ -1,7 +1,7 @@
 CXXFLAGS = -g -Wall --pedantic
 
 main: main.o CSVLoader.o  Episodio.o Pelicula.o Video.o
-	g++ $(CXXFLAGS) main.o CSVLoader.o  Episodio.o Pelicula.o Video.o -o main
+	g++ $(CXXFLAGS) main.o CSVLoader.o Episodio.o Pelicula.o Video.o -o main
 
 main.o: main.cpp
 	g++ -c $(CXXFLAGS) main.cpp
