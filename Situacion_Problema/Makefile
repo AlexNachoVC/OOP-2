@@ -1,20 +1,22 @@
+CXXFLAGS = -g -Wall --pedantic
+
 main: main.o CSVLoader.o  Episodio.o Pelicula.o Video.o
-	g++ -g -Wall --pedantic main.o CSVLoader.o  Episodio.o Pelicula.o Video.o -o main
+    g++ $(CXXFLAGS) main.o CSVLoader.o  Episodio.o Pelicula.o Video.o -o main
 
 main.o: main.cpp
-	g++ -c -g -Wall --pedantic main.cpp
+    g++ -c $(CXXFLAGS) main.cpp
 
 CSVLoader.o: CSVLoader.cpp CSVLoader.h
-	g++ -c -g -Wall --pedantic CSVLoader.cpp 
+    g++ -c $(CXXFLAGS) CSVLoader.cpp 
 
 Episodio.o: Episodio.cpp Episodio.h
-	g++ -c -g -Wall --pedantic Episodio.cpp 
+    g++ -c $(CXXFLAGS) Episodio.cpp 
 
 Pelicula.o: Pelicula.cpp Pelicula.h
-	g++ -c -g -Wall --pedantic Pelicula.cpp 
+    g++ -c $(CXXFLAGS) Pelicula.cpp 
 
 Video.o: Video.cpp Video.h
-	g++ -c -g -Wall --pedantic Video.cpp
+    g++ -c $(CXXFLAGS) Video.cpp
 
 clean:
-	rm *.o main
+    rm *.o main
