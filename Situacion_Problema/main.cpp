@@ -66,16 +66,101 @@ int main() {
 
         switch (opcion) {
             case 1:
-                // Implementa la funcionalidad para mostrar videos con cierta calificacion o genero
-                break;
+                {
+                    cout <<  "Quiere ver los videos en base a al genero a en base a la calificacion?" << endl << "a) Genero" << endl << "b) Calificacion" << endl;
+                    char seleccion;
+                    cout << "Ingresa tu eleccion: ";     
+                    cin >> seleccion;         
+
+                    if (tolower(seleccion) == 'a') {
+                        cout << "Opciones de genero: " << endl << " 1. Drama\n 2. Accion\n 3. Misterio" << endl;
+                        int seleccion_genero;  
+                        cout << "Selecciona el genero: ";
+                        cin >> seleccion_genero; 
+
+                        string genero;
+                        switch (seleccion_genero) {
+                            case 1:
+                                genero = "Drama";
+                                break;
+                            case 2:
+                                genero = "Accion";
+                                break;
+                            case 3:
+                                genero = "Misterio";
+                                break;
+                            default:
+                                cout << "Opcion no valida." << endl;
+                                break;
+                        }
+
+                        for (int i = 0; i < dataSizePelicula; i++) {
+                            if (peliculaArray[i].getGenero() == genero) {
+                                peliculaArray[i].mostrar();
+                            }
+                        }
+
+                        for (int i = 0; i < dataSizeSerie; i++) {
+                            if (episodioArray[i].getGenero() == genero) {
+                                episodioArray[i].mostrar();
+                            }
+                        }
+                    }
+
+                    else if (tolower(seleccion) == 'b') {
+                        cout << "Ingresa la calificacion que deseas encontrar: " << endl;
+                        float seleccion_calificacion;
+                        cin >> seleccion_calificacion;
+
+                        for (int i = 0; i < dataSizePelicula; i++) {
+                            if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
+                                peliculaArray[i].mostrar();
+                            }
+                        }
+
+                        for (int i = 0; i < dataSizeSerie; i++) {
+                            if (episodioArray[i].getCalificacion() == seleccion_calificacion) {
+                                episodioArray[i].mostrar();
+                            }
+                        }
+                    }
+                    break;
+                }
             case 2:
-                // Implementa la funcionalidad para mostrar episodios de una serie con cierta calificacion
-                break;
+                {
+                    cout << "De que serie le interesa conocer los episodios con cierta calificacion?" << endl;
+                    cin.ignore(); // Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
+                    string seleccion_serie;
+                    getline(cin, seleccion_serie); // Lee una linea entera de entrada del usuario, ya que "cin" solo lee una palabra, por lo que, al estar el nombre de la serie conformado por dos palabras, causaba problemas usar cin.
+
+                    cout << "Ingresa la calificacion que deseas encontrar: " << endl;
+                    float seleccion_calificacion;
+                    cin >> seleccion_calificacion;
+                    cin.ignore();// Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
+
+                    for (int i = 0; i < dataSizeSerie; i++) {
+                        if (episodioArray[i].getNombre() == seleccion_serie && episodioArray[i].getCalificacion() == seleccion_calificacion) {
+                            episodioArray[i].mostrar();
+                        }
+                    }
+                    break;
+                }
             case 3:
-                // Implementa la funcionalidad para mostrar peliculas con cierta calificacion
+                {
+                    cout << "Con que calificacion te gustaria que te mostrara peliculas? " << endl;
+                    float seleccion_calificacion;
+                    cin >> seleccion_calificacion;
+
+                    for (int i = 0; i < dataSizePelicula; i++) {
+                        if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
+                            peliculaArray[i].mostrar();
+                        }
+                    }
+
+                }
                 break;
             case 4:
-                // Implementa la funcionalidad para calificar un video
+                
                 break;
             case 5:
                 std::cout << "Saliendo...\n";

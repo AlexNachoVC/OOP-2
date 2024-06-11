@@ -12,8 +12,8 @@ int Episodio::getTemporada() {
 }
 
 void Episodio::mostrar() {
-    cout << "ID Episodio: " << id << " | "
-         << "Nombre Episodio: " << nombre << " | "
+    cout << "ID Serie: " << id << " | "
+         << "Nombre Serie: " << nombre << " | "
          << "Duracion Episodio: " << duracion << " | "
          << "Genero Episodio: " << genero << " | "
          << "Titulo Episodio: " << titulo << " | "
