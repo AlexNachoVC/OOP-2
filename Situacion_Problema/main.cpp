@@ -78,6 +78,11 @@ int main() {
 
             case 2:
                 {
+                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        break;
+                    }
+                    
                     cout <<  "Quiere ver los videos en base a al genero a en base a la calificacion?" << endl << "a) Genero" << endl << "b) Calificacion" << endl;
                     char seleccion;
                     cout << "Ingresa tu eleccion: ";     
@@ -140,6 +145,11 @@ int main() {
 
             case 3:
                 {
+                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        break;
+                    }
+
                     cout << "De que serie le interesa conocer los episodios con cierta calificacion?" << endl;
                     cin.ignore(); // Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo. (Esto lo tuve que investigar por un error, y asi llegue a la solucion. Fuente: https://stackoverflow.com/questions/25475384/when-and-why-do-i-need-to-use-cin-ignore-in-c)
                     string seleccion_serie;
@@ -160,6 +170,11 @@ int main() {
                 
             case 4:
                 {
+                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        break;
+                    }
+                    
                     cout << "Con que calificacion te gustaria que te mostrara peliculas? " << endl;
                     float seleccion_calificacion;
                     cin >> seleccion_calificacion;
@@ -175,6 +190,11 @@ int main() {
                 
             case 5:
                 {
+                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        break;
+                    }
+                    
                     cout << "Deseas calificar una pelicula o un episodio? (p/e)" << endl;
                     char tipo_video;
                     cin >> tipo_video;
