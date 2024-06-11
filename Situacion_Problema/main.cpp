@@ -56,23 +56,23 @@ int main() {
 
     int opcion = 0;
     while (opcion != 6) {
-        cout << "1. Mostrar videos con cierta calificación o género\n";
-        cout << "2. Mostrar episodios de una serie con cierta calificación\n";
-        cout << "3. Mostrar películas con cierta calificación\n";
+        cout << "1. Mostrar videos con cierta calificacion o genero\n";
+        cout << "2. Mostrar episodios de una serie con cierta calificacion\n";
+        cout << "3. Mostrar peliculas con cierta calificacion\n";
         cout << "4. Calificar un video\n";
         cout << "5. Salir\n";
-        cout << "Selecciona una opción: ";
+        cout << "Selecciona una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
             case 1:
-                // Implementa la funcionalidad para mostrar videos con cierta calificación o género
+                // Implementa la funcionalidad para mostrar videos con cierta calificacion o genero
                 break;
             case 2:
-                // Implementa la funcionalidad para mostrar episodios de una serie con cierta calificación
+                // Implementa la funcionalidad para mostrar episodios de una serie con cierta calificacion
                 break;
             case 3:
-                // Implementa la funcionalidad para mostrar películas con cierta calificación
+                // Implementa la funcionalidad para mostrar peliculas con cierta calificacion
                 break;
             case 4:
                 // Implementa la funcionalidad para calificar un video
@@ -81,7 +81,7 @@ int main() {
                 std::cout << "Saliendo...\n";
                 break;
             default:
-                std::cout << "Opción no válida. Por favor, intenta de nuevo.\n";
+                std::cout << "Opcion no valida. Por favor, intenta de nuevo.\n";
                 break;
         }
     }
