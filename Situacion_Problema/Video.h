@@ -20,5 +20,5 @@ public:
     string getGenero();
     float getCalificacion();
     void setCalificacion(float calificacion);
-    virtual void mostrar();
+    virtual void mostrar() = 0; // Funcion virtual pura, ya que se implementa de diferente manera en cada una de las clases derivadas.
 };

@@ -36,10 +36,3 @@ void Video::setCalificacion(float calificacion) {
     this->calificacion = calificacion;
 }
 
-void Video::mostrar() {
-    cout << "ID: " << id << " | "
-         << "Nombre: " << nombre << " | "
-         << "Duracion: " << duracion << " | "
-         << "Genero: " << genero << " | "
-         << "Calificacion: " << calificacion << endl;
-}

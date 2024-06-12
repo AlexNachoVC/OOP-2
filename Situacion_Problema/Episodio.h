@@ -12,7 +12,7 @@ public:
     string getTitulo();
     int getTemporada();
 
-    void mostrar();
+    void mostrar() override; // Esta funcion va a sobreescribir la funcion virtual pura declarada en la clase base.
 
     void setId(string id);
     void setNombre(string nombre);
