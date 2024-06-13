@@ -32,6 +32,22 @@ float Video::getCalificacion() {
     return calificacion;
 }
 
+void Video::setId(string id) {
+    this->id = id;
+}
+
+void Video::setNombre(string nombre) {
+    this->nombre = nombre;
+}
+
+void Video::setDuracion(int duracion) {
+    this->duracion = duracion;
+}
+
+void Video::setGenero(string genero) {
+    this->genero = genero;
+}
+
 void Video::setCalificacion(float calificacion) {
     this->calificacion = calificacion;
 }

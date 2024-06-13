@@ -14,10 +14,6 @@ public:
 
     void mostrar() override; // Esta funcion va a sobreescribir la funcion virtual pura declarada en la clase base.
 
-    void setId(string id);
-    void setNombre(string nombre);
-    void setDuracion(int duracion);
-    void setGenero(string genero);
     void setEpisodioTitulo(string titulo);
     void setTemporada(int temporada);
 };

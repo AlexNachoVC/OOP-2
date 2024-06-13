@@ -21,22 +21,6 @@ void Episodio::mostrar() {
          << "Calificacion Episodio: " << calificacion << endl;
 }
 
-void Episodio::setId(string id) {
-    this->id = id;
-}
-
-void Episodio::setNombre(string nombre) {
-    this->nombre = nombre;
-}
-
-void Episodio::setDuracion(int duracion) {
-    this->duracion = duracion;
-}
-
-void Episodio::setGenero(string genero) {
-    this->genero = genero;
-}
-
 void Episodio::setEpisodioTitulo(string titulo) {
     this->titulo = titulo;
 }

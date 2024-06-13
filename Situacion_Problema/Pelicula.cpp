@@ -16,18 +16,3 @@ void Pelicula::mostrar() {
          << "Calificacion Pelicula: " << calificacion << endl;
 }
 
-void Pelicula::setId(string id) { 
-    this->id = id;
-}
-void Pelicula::setNombre(string nombre) { 
-    this->nombre = nombre; 
-}
-void Pelicula::setDuracion(int duracion) { 
-    this->duracion = duracion; 
-}
-void Pelicula::setGenero(string genero) { 
-    this->genero = genero; 
-}
-void Pelicula::setCalificacion(float calificacion) { 
-    this->calificacion = calificacion; 
-}
