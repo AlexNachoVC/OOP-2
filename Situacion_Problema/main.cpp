@@ -85,7 +85,7 @@ int main() {
                     
                     cout <<  "Quiere ver los videos en base a al genero a en base a la calificacion?" << endl << "a) Genero" << endl << "b) Calificacion" << endl;
                     char seleccion;
-                    cout << "Ingresa tu eleccion: ";     
+                    cout << "Ingresa tu eleccion (la letra correspondiente): ";     
                     cin >> seleccion;         
 
                     if (tolower(seleccion) == 'a') {
@@ -128,16 +128,22 @@ int main() {
                         float seleccion_calificacion;
                         cin >> seleccion_calificacion;
 
+                        bool found = false;
                         for (int i = 0; i < dataSizePelicula; i++) {
                             if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
                                 peliculaArray[i].mostrar();
+                                found = true;
                             }
                         }
 
                         for (int i = 0; i < dataSizeSerie; i++) {
                             if (episodioArray[i].getCalificacion() == seleccion_calificacion) {
                                 episodioArray[i].mostrar();
+                                found = true;
                             }
+                        }
+                        if (!found) {
+                            cout << "No se encontraron videos con esa calificacion" << endl;
                         }
                     }
                     break;
@@ -160,11 +166,17 @@ int main() {
                     cin >> seleccion_calificacion;
                     cin.ignore();// Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
 
+                    bool found = false;
                     for (int i = 0; i < dataSizeSerie; i++) {
                         if (episodioArray[i].getNombre() == seleccion_serie && episodioArray[i].getCalificacion() == seleccion_calificacion) {
                             episodioArray[i].mostrar();
+                            found = true;
                         }
                     }
+                    if (!found) {
+                        cout << "No se encontraron episodios con esa calificacion" << endl;
+                    }
+
                     break;
                 }
                 
@@ -179,10 +191,15 @@ int main() {
                     float seleccion_calificacion;
                     cin >> seleccion_calificacion;
 
+                    bool found = false;
                     for (int i = 0; i < dataSizePelicula; i++) {
                         if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
                             peliculaArray[i].mostrar();
+                            found = true;
                         }
+                    }
+                    if (!found) {
+                        cout << "No se encontraron peliculas con esa calificacion" << endl;
                     }
 
                     break;
@@ -225,24 +242,33 @@ int main() {
                     cin.ignore();
 
                     if (tipo_video == 'p') {
+                        bool found = false;
                         for (int i = 0; i < dataSizePelicula; i++) {
                             if (peliculaArray[i].getNombre() == nombre_video) {
                                 peliculaArray[i].setCalificacion(nueva_calificacion);
                                 cout << "Calificacion actualizada con exito!" << endl;
+                                found = true;
                                 break;
                             }  
                         }
+                        if (!found) {
+                            cout << "No se encontro la pelicula con el nombre proporcionado." << endl;
+                        }
                     }
                     else if (tipo_video == 'e') {
+                        bool found = false;
                         for (int i = 0; i < dataSizeSerie; i++) {
                             if (episodioArray[i].getNombre() == nombre_video && episodioArray[i].getTitulo() == titulo_episodio) {
                                 episodioArray[i].setCalificacion(nueva_calificacion);
                                 cout << "Calificacion actualizada con exito!" << endl;
+                                found = true;
                                 break;
                             }
                         }
+                        if (!found) {
+                            cout << "No se encontro el episodio con el nombre y titulo proporcionados." << endl;
+                        }
                     }
-
                     break;
                 }
                 
