@@ -79,19 +79,19 @@ int main() {
             case 2:
                 {
                     if (peliculaArray == nullptr || episodioArray == nullptr) {
-                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
                     
-                    cout <<  "Quiere ver los videos en base a al genero a en base a la calificacion?" << endl << "a) Genero" << endl << "b) Calificacion" << endl;
+                    cout <<  "\nQuiere ver los videos en base a al genero a en base a la calificacion?" << endl << "a) Genero" << endl << "b) Calificacion" << endl;
                     char seleccion;
-                    cout << "Ingresa tu eleccion (la letra correspondiente): ";     
+                    cout << "\nIngresa tu eleccion (la letra correspondiente): ";     
                     cin >> seleccion;         
 
                     if (tolower(seleccion) == 'a') {
-                        cout << "Opciones de genero: " << endl << " 1. Drama\n 2. Accion\n 3. Misterio" << endl;
+                        cout << "\nOpciones de genero: " << endl << " 1. Drama\n 2. Accion\n 3. Misterio" << endl;
                         int seleccion_genero;  
-                        cout << "Selecciona el genero (Ingresa el numero correspondiente): ";
+                        cout << "\nSelecciona el genero (Ingresa el numero correspondiente): ";
                         cin >> seleccion_genero; 
 
                         string genero;
@@ -124,7 +124,7 @@ int main() {
                     }
 
                     else if (tolower(seleccion) == 'b') {
-                        cout << "Ingresa la calificacion que deseas encontrar: " << endl;
+                        cout << "\nIngresa la calificacion que deseas encontrar: " << endl;
                         float seleccion_calificacion;
                         cin >> seleccion_calificacion;
 
@@ -143,7 +143,7 @@ int main() {
                             }
                         }
                         if (!found) {
-                            cout << "No se encontraron videos con esa calificacion" << endl;
+                            cout << "\nNo se encontraron videos con esa calificacion" << endl;
                         }
                     }
                     break;
@@ -152,16 +152,16 @@ int main() {
             case 3:
                 {
                     if (peliculaArray == nullptr || episodioArray == nullptr) {
-                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
 
-                    cout << "De que serie le interesa conocer los episodios con cierta calificacion?" << endl;
+                    cout << "\nDe que serie le interesa conocer los episodios con cierta calificacion?" << endl;
                     cin.ignore(); // Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo. (Esto lo tuve que investigar por un error, y asi llegue a la solucion. Fuente: https://stackoverflow.com/questions/25475384/when-and-why-do-i-need-to-use-cin-ignore-in-c)
                     string seleccion_serie;
                     getline(cin, seleccion_serie); // Lee una linea entera de entrada del usuario, ya que "cin" solo lee una palabra, por lo que, al estar el nombre de la serie conformado por dos palabras, causaba problemas usar cin.
 
-                    cout << "Ingresa la calificacion que deseas encontrar: " << endl;
+                    cout << "\nIngresa la calificacion que deseas encontrar: " << endl;
                     float seleccion_calificacion;
                     cin >> seleccion_calificacion;
                     cin.ignore();// Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
@@ -174,7 +174,7 @@ int main() {
                         }
                     }
                     if (!found) {
-                        cout << "No se encontraron episodios con esa calificacion" << endl;
+                        cout << "\nNo se encontraron episodios con esa calificacion" << endl;
                     }
 
                     break;
@@ -183,11 +183,11 @@ int main() {
             case 4:
                 {
                     if (peliculaArray == nullptr || episodioArray == nullptr) {
-                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
                     
-                    cout << "Con que calificacion te gustaria que te mostrara peliculas? " << endl;
+                    cout << "\nCon que calificacion te gustaria que te mostrara peliculas? " << endl;
                     float seleccion_calificacion;
                     cin >> seleccion_calificacion;
 
@@ -199,7 +199,7 @@ int main() {
                         }
                     }
                     if (!found) {
-                        cout << "No se encontraron peliculas con esa calificacion" << endl;
+                        cout << "\nNo se encontraron peliculas con esa calificacion" << endl;
                     }
 
                     break;
@@ -208,11 +208,11 @@ int main() {
             case 5:
                 {
                     if (peliculaArray == nullptr || episodioArray == nullptr) {
-                        cout << "No se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
+                        cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
                     
-                    cout << "Deseas calificar una pelicula o un episodio? (p/e)" << endl;
+                    cout << "\nDeseas calificar una pelicula o un episodio? (p/e)" << endl;
                     char tipo_video;
                     cin >> tipo_video;
                     cin.ignore();
@@ -221,22 +221,22 @@ int main() {
                     string titulo_episodio;
 
                     if (tipo_video == 'p') {
-                        cout << "Ingresa el nombre de la pelicula que deseas calificar: " << endl;
+                        cout << "\nIngresa el nombre de la pelicula que deseas calificar: " << endl;
                         getline(cin, nombre_video);
                     } 
                     else if (tipo_video == 'e') {
-                        cout << "Ingresa el nombre de la serie de la cual deseas calificar un episodio: " << endl;
+                        cout << "\nIngresa el nombre de la serie de la cual deseas calificar un episodio: " << endl;
                         getline(cin, nombre_video);
 
                         cout << "Ingresa el titulo del episodio que deseas calificar: " << endl;
                         getline(cin, titulo_episodio);
                     } 
                     else {
-                        cout << "Tipo de video no valido. Por favor, intenta de nuevo." << endl;
+                        cout << "\nTipo de video no valido. Por favor, intenta de nuevo." << endl;
                         break;
                     }
 
-                    cout << "Ingresa la nueva calificacion: " << endl;
+                    cout << "\nIngresa la nueva calificacion: " << endl;
                     float nueva_calificacion;
                     cin >> nueva_calificacion;
                     cin.ignore();
@@ -246,13 +246,14 @@ int main() {
                         for (int i = 0; i < dataSizePelicula; i++) {
                             if (peliculaArray[i].getNombre() == nombre_video) {
                                 peliculaArray[i].setCalificacion(nueva_calificacion);
-                                cout << "Calificacion actualizada con exito!" << endl;
+                                cout << "\nCalificacion actualizada con exito!" << endl;
+                                peliculaArray[i].mostrar();
                                 found = true;
                                 break;
                             }  
                         }
                         if (!found) {
-                            cout << "No se encontro la pelicula con el nombre proporcionado." << endl;
+                            cout << "\nNo se encontro la pelicula con el nombre proporcionado." << endl;
                         }
                     }
                     else if (tipo_video == 'e') {
@@ -260,13 +261,14 @@ int main() {
                         for (int i = 0; i < dataSizeSerie; i++) {
                             if (episodioArray[i].getNombre() == nombre_video && episodioArray[i].getTitulo() == titulo_episodio) {
                                 episodioArray[i].setCalificacion(nueva_calificacion);
-                                cout << "Calificacion actualizada con exito!" << endl;
+                                cout << "\nCalificacion actualizada con exito!" << endl;
+                                episodioArray[i].mostrar();
                                 found = true;
                                 break;
                             }
                         }
                         if (!found) {
-                            cout << "No se encontro el episodio con el nombre y titulo proporcionados." << endl;
+                            cout << "\nNo se encontro el episodio con el nombre y titulo proporcionados." << endl;
                         }
                     }
                     break;
@@ -274,13 +276,13 @@ int main() {
                 
             case 6:
                 {
-                    cout << "Saliendo...\n";
+                    cout << "\nSaliendo...\n";
                     break;
                 }
                 
             default:
                 {
-                    cout << "Opcion no valida. Por favor, intenta de nuevo.\n";
+                    cout << "\nOpcion no valida. Por favor, intenta de nuevo.\n";
                     break;
                 }
         }
