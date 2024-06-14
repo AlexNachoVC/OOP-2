@@ -15,6 +15,8 @@ public:
     Video();
     Video(string id, string nombre, int duracion, string genero, float calificacion);
 
+    virtual ~Video() = default; // implemente este destructor virtual, por un warning que me dio el compilador :)
+
     // ponemos la mayoria de los metodos que se usan en las clases, para no duplicar codigo en las clases derivadas. tambien, definimos algunos metodos virtuales, para darles usos diferentes en cada clase, aprovechando el polimorfismo
     string getId();
     string getNombre();

@@ -13,6 +13,7 @@ int main() {
 
     Video **videoArray = nullptr; // se colocan aqui para no usar variables globales
     unsigned int dataSize = 0; // se colocan aqui para no usar variables globales
+    bool isDataLoaded = false; // Variable para verificar si los datos ya fueron cargados
   
     int opcion = 0;
     while (opcion != 6) {
@@ -29,6 +30,11 @@ int main() {
         switch (opcion) {
             case 1:
                 {
+                    if (isDataLoaded) { // Verificar si los datos ya fueron cargados
+                        cout << "Los datos ya fueron cargados. No se pueden cargar de nuevo.\n";
+                        break;
+                    }
+
                     dataSize = countDataLinesInCSV(MOVIES_FILE) + countDataLinesInCSV(SERIES_FILE);
                     if(dataSize == -1) {
                         cerr << "No se pudo cargar el data set de " << MOVIES_FILE << " o " << SERIES_FILE << "\n";
@@ -44,18 +50,44 @@ int main() {
 
                     if(!loadVideosFromCSV(MOVIES_FILE, videoArray, dataSize)) {
                         cerr << "Error al cargar el data set de " << MOVIES_FILE << "\n";
+                        for (unsigned int i = 0; i < dataSize; i++) {
+                            if(videoArray[i] != nullptr) {
+                                delete videoArray[i];
+                                videoArray[i] = nullptr;
+                            }
+                        }
                         delete [] videoArray;
+                        videoArray = nullptr;
                         return 0;
                     }
+                    for (unsigned int i = 0; i < dataSize; i++) {
+                        if (videoArray[i] != nullptr) {
+                            videoArray[i]->mostrar();
+                        }
+                    }
+                    break;
 
                     if(!loadVideosFromCSV(SERIES_FILE, videoArray, dataSize)) {
                         cerr << "Error al cargar el data set de " << SERIES_FILE << "\n";
+                        for (unsigned int i = 0; i < dataSize; i++) {
+                            if(videoArray[i] != nullptr) {
+                                delete videoArray[i];
+                                videoArray[i] = nullptr;
+                            }
+                        }
                         delete [] videoArray;
+                        videoArray = nullptr;
                         return 0;
                     }
+                    for (unsigned int i = 0; i < dataSize; i++) {
+                        if (videoArray[i] != nullptr) {
+                            videoArray[i]->mostrar();
+                        }
+                    }
 
-                    cout << "Archivos de datos cargados de manera exitosa!" << endl;
-
+                    isDataLoaded = true; // Establecer que los datos ya fueron cargados
+                    
+                    
                     break;
                 }
 
@@ -93,17 +125,13 @@ int main() {
                                 break;
                         }
 
-                        for (int i = 0; i < dataSize; i++) {
+                        for (unsigned int i = 0; i < dataSize; i++) {
                             if (videoArray[i]->getGenero() == genero) {
                                 videoArray[i]->mostrar(); // llamamos metodos en tiempo de ejecucion
                             }
                         }
 
-                        for (int i = 0; i < dataSize; i++) {
-                            if (videoArray[i]->getGenero() == genero) {
-                                videoArray[i]->mostrar();
-                            }
-                        }
+
                     }
 
                     else if (tolower(seleccion) == 'b') {
@@ -112,14 +140,14 @@ int main() {
                         cin >> seleccion_calificacion;
 
                         bool found = false;
-                        for (int i = 0; i < dataSize; i++) {
+                        for (unsigned int i = 0; i < dataSize; i++) {
                             if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
                                 videoArray[i]->mostrar();
                                 found = true;
                             }
                         }
 
-                        for (int i = 0; i < dataSize; i++) {
+                        for (unsigned int i = 0; i < dataSize; i++) {
                             if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
                                 videoArray[i]->mostrar();
                                 found = true;
@@ -150,7 +178,7 @@ int main() {
                     cin.ignore();// Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
 
                     bool found = false;
-                    for (int i = 0; i < dataSize; i++) {
+                    for (unsigned int i = 0; i < dataSize; i++) {
                         if (videoArray[i]->getNombre() == seleccion_serie && videoArray[i]->getCalificacion() == seleccion_calificacion) {
                             videoArray[i]->mostrar();
                             found = true;
@@ -175,8 +203,8 @@ int main() {
                     cin >> seleccion_calificacion;
 
                     bool found = false;
-                    for (int i = 0; i < dataSize; i++) {
-                        if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
+                    for (unsigned int i = 0; i < dataSize; i++) {
+                        if (typeid(*videoArray[i]) == typeid(Pelicula) && videoArray[i]->getCalificacion() == seleccion_calificacion) {
                             videoArray[i]->mostrar();
                             found = true;
                         }
@@ -226,7 +254,7 @@ int main() {
 
                     if (tipo_video == 'p') {
                         bool found = false;
-                        for (int i = 0; i < dataSize; i++) {
+                        for (unsigned int i = 0; i < dataSize; i++) {
                             if (videoArray[i]->getNombre() == nombre_video) {
                                 videoArray[i]->setCalificacion(nueva_calificacion);
                                 cout << "\nCalificacion actualizada con exito!" << endl;
@@ -241,7 +269,7 @@ int main() {
                     }
                     else if (tipo_video == 'e') {
                         bool found = false;
-                        for (int i = 0; i < dataSize; i++) {
+                        for (unsigned int i = 0; i < dataSize; i++) {
                             if (videoArray[i]->getNombre() == nombre_video && videoArray[i]->getTitulo() == titulo_episodio) {
                                 videoArray[i]->setCalificacion(nueva_calificacion);
                                 cout << "\nCalificacion actualizada con exito!" << endl;
@@ -270,4 +298,14 @@ int main() {
                 }
         }
     }
+    // Liberar la memoria al final del programa
+    if (videoArray != nullptr) {
+        for (unsigned int i = 0; i < dataSize; i++) {
+            delete videoArray[i];
+        }
+        delete [] videoArray;
+    }
+
+    return 0;
+
 }
