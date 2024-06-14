@@ -14,7 +14,9 @@ int main() {
     Video **videoArray = nullptr; // se colocan aqui para no usar variables globales
     unsigned int dataSize = 0; // se colocan aqui para no usar variables globales
     bool isDataLoaded = false; // Variable para verificar si los datos ya fueron cargados
-  
+    unsigned int currentPos = 0; // variable para la posicion actual del arreglo.
+    unsigned int ultimoElemento = 0; // variable que nos ayudara a sobreescribir la posicion actual despues de cargar las peliculas, y antes de los episodios
+
     int opcion = 0;
     while (opcion != 6) {
         cout << "\n";
@@ -47,43 +49,26 @@ int main() {
                         cerr << "No hubo memoria para el arreglo de videos\n";
                         return 0;
                     }
-
-                    if(!loadVideosFromCSV(MOVIES_FILE, videoArray, dataSize)) {
+                    // aqui cambie el orden logico para checar errores, primero cargando las peliculas, y luego, checando si habia regresado un elemento vacio, marcar error
+                    ultimoElemento = loadVideosFromCSV(MOVIES_FILE, videoArray, dataSize, currentPos);
+                    if(ultimoElemento == 0) {
                         cerr << "Error al cargar el data set de " << MOVIES_FILE << "\n";
-                        for (unsigned int i = 0; i < dataSize; i++) {
-                            if(videoArray[i] != nullptr) {
-                                delete videoArray[i];
-                                videoArray[i] = nullptr;
-                            }
-                        }
+                        
                         delete [] videoArray;
-                        videoArray = nullptr;
                         return 0;
-                    }
-                    for (unsigned int i = 0; i < dataSize; i++) {
-                        if (videoArray[i] != nullptr) {
-                            videoArray[i]->mostrar();
-                        }
-                    }
-                    break;
-
-                    if(!loadVideosFromCSV(SERIES_FILE, videoArray, dataSize)) {
+                    } 
+                    
+                    // aqui hago el cambio de la variable currentPos, para que cuando se intenten cargar las series y lo tome como argumento, pueda empezar despues del contenido ya cargado
+                    currentPos = ultimoElemento;
+                    
+                    ultimoElemento = loadVideosFromCSV(SERIES_FILE, videoArray, dataSize, currentPos);
+                    if(ultimoElemento == 0) {
                         cerr << "Error al cargar el data set de " << SERIES_FILE << "\n";
-                        for (unsigned int i = 0; i < dataSize; i++) {
-                            if(videoArray[i] != nullptr) {
-                                delete videoArray[i];
-                                videoArray[i] = nullptr;
-                            }
-                        }
+                        
                         delete [] videoArray;
-                        videoArray = nullptr;
                         return 0;
                     }
-                    for (unsigned int i = 0; i < dataSize; i++) {
-                        if (videoArray[i] != nullptr) {
-                            videoArray[i]->mostrar();
-                        }
-                    }
+                    
 
                     isDataLoaded = true; // Establecer que los datos ya fueron cargados
                     
@@ -204,6 +189,7 @@ int main() {
 
                     bool found = false;
                     for (unsigned int i = 0; i < dataSize; i++) {
+                        // aqui aprovechamos el typeid, para que dentro del arreglo que tiene los dos tipos de video, solo escoga peliculas
                         if (typeid(*videoArray[i]) == typeid(Pelicula) && videoArray[i]->getCalificacion() == seleccion_calificacion) {
                             videoArray[i]->mostrar();
                             found = true;

@@ -3,21 +3,21 @@
 #include <sstream>
 #include <iostream>
 
-bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigned int &arraySize) {
+unsigned int loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigned int &arraySize, unsigned int currentPos) {
     std::ifstream file(fileName);
     std::string line;
-    unsigned int size = 0;
+    unsigned int size = currentPos;
 
     if (!file.is_open()) {
         std::cerr << "Error al abrir el archivo: " << fileName << std::endl;
-        return false;
+        return 0;
     }
 
     // skip header
     if(!std::getline(file, line)) {
         std::cerr << "El archivo no tiene header" << std::endl;
         file.close();
-        return false;
+        return 0;
     }
 
     std::cout << "Cargando archivo: " << fileName << std::endl;
@@ -63,17 +63,18 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
             if(errores || campo != PELICULA_ATTRIB_SIZE) {
                 std::cerr << "Error en la linea: " << std::endl << line << std::endl;
                 file.close();
-                return false;
+                return 0;
             }
 
             if(size < arraySize) {
                 videoArray[size] = new Pelicula(nPelicula);
                 size ++;
+                currentPos++;
             }
             else {
                 std::cerr << "Error, el arreglo es muy pequeño" << std::endl;
                 file.close();
-                return false;
+                return 0;
             }
         }
 
@@ -114,7 +115,7 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
             if(errores || campo != SERIE_ATTRIB_SIZE) {
                 std::cerr << "Error en la linea: " << std::endl << line << std::endl;
                 file.close();
-                return false;
+                return 0;
             }
 
             if(size < arraySize) {
@@ -124,18 +125,18 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
             else {
                 std::cerr << "Error, el arreglo es muy pequeño" << std::endl;
                 file.close();
-                return false;
+                return 0;
             }
         }
         else {
             std::cerr << "Tipo de video desconocido: " << std::endl;
             file.close();
-            return false;
+            return 0;
         }
     }
 
     file.close();
-    return true;
+    return currentPos;
 }
 
 int countDataLinesInCSV(const string& fileName) {
