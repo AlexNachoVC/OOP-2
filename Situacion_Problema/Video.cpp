@@ -32,6 +32,17 @@ float Video::getCalificacion() {
     return calificacion;
 }
 
+string Video::getTitulo()
+{
+    return "";
+}
+
+int Video::getTemporada()
+{
+    return 0;
+}
+
+
 void Video::setId(string id) {
     this->id = id;
 }

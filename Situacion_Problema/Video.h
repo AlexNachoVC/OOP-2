@@ -15,11 +15,14 @@ public:
     Video();
     Video(string id, string nombre, int duracion, string genero, float calificacion);
 
+    // ponemos la mayoria de los metodos que se usan en las clases, para no duplicar codigo en las clases derivadas. tambien, definimos algunos metodos virtuales, para darles usos diferentes en cada clase, aprovechando el polimorfismo
     string getId();
     string getNombre();
     int getDuracion();
     string getGenero();
     float getCalificacion();
+    virtual string getTitulo(); // estos, si bien solo son para la clase episodio, los declare aqui como virtuales, para que se pudieran usar en el loadVideosFromCSV, ya que hace un arreglo de videos, y para subir series, se ocupan estos metodos
+    virtual int getTemporada();
 
     void setId(string id);
     void setNombre(string nombre);

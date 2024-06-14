@@ -1,8 +1,3 @@
-#include "CSVLoader.h"
-#include <fstream>
-#include <sstream>
-#include <iostream>
-
 bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigned int &arraySize) {
     std::ifstream file(fileName);
     std::string line;
@@ -22,14 +17,16 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
 
     std::cout << "Cargando archivo: " << fileName << std::endl;
 
-    while (std::getline(file, line)) {
-        Pelicula        nPelicula;
-        std::stringstream    ss(line);
-        std::string          cell;
-        int             campo = 0, errores = 0;
+    while (std::getline(file, line) && size < arraySize) {
+        std::stringstream ss(line);
+        std::string cell;
+        int campo = 0, errores = 0;
 
+        // Leer el tipo de video de la primera columna
+        std::getline(ss, cell, ',');
+        std::string tipo = cell;
 
-        if(fileName == "movies.csv") {
+        if(tipo == "P1") {
             Pelicula nPelicula;
 
             while (std::getline(ss, cell, ',')) {
@@ -77,7 +74,7 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
             }
         }
 
-        else if(fileName == "series.csv") {
+        else if(tipo == "S1") {
             Episodio nEpisodio;
 
             while (std::getline(ss, cell, ',')) {
@@ -128,7 +125,7 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
             }
         }
         else {
-            std::cerr << "Tipo de video desconocido: " << std::endl;
+            std::cerr << "Tipo de video desconocido: " << tipo << std::endl;
             file.close();
             return false;
         }
@@ -136,31 +133,4 @@ bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigne
 
     file.close();
     return true;
-}
-
-int countDataLinesInCSV(const string& fileName) {
-    ifstream    file(fileName);
-    int         lineCount = 0;
-    string      line;
-
-    // Contar la cantidad de líneas en el archivo csv
-    if (!file.is_open()) {
-        cerr << "Error al abrir el archivo: " << fileName << endl;
-        return -1;
-    }
-
-    // skip header
-    if(!getline(file, line)) {
-        cerr << "El archivo no tiene header" << endl;
-        file.close();
-        return -1;
-    }
-
-    // Contar lineas 
-    while(getline(file, line)) {
-        lineCount++;    
-    }
-
-    file.close();
-    return(lineCount);
 }

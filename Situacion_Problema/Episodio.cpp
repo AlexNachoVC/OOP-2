@@ -21,7 +21,7 @@ void Episodio::mostrar() {
          << "Calificacion Episodio: " << calificacion << endl;
 }
 
-void Episodio::setEpisodioTitulo(string titulo) {
+void Episodio::setEpisodioTitulo(string titulo)  {
     this->titulo = titulo;
 }
 

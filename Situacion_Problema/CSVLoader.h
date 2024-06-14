@@ -7,8 +7,7 @@
 #define PELICULA_ATTRIB_SIZE 5
 #define SERIE_ATTRIB_SIZE 7
 
+bool loadVideosFromCSV(const std::string& fileName, Video **&videoArray, unsigned int &arraySize); // modificamos la implementacion, para solo hacer un array de videos, y no uno de cada tipo
 
-bool loadMoviesFromCSV(const std::string& fileName, Pelicula *peliculaArray, unsigned int arraySize);
-bool loadSeriesFromCSV(const std::string& fileName, Episodio *episodioArray, unsigned int arraySize);
 int countDataLinesInCSV(const std::string& fileName);
 

@@ -8,14 +8,11 @@
 
 using namespace std;
 
-Pelicula *peliculaArray = nullptr;
-int dataSizePelicula = 0;
-
-Episodio *episodioArray = nullptr;
-int dataSizeSerie = 0;
-
 
 int main() {
+
+    Video **videoArray = nullptr; // se colocan aqui para no usar variables globales
+    unsigned int dataSize = 0; // se colocan aqui para no usar variables globales
   
     int opcion = 0;
     while (opcion != 6) {
@@ -32,42 +29,28 @@ int main() {
         switch (opcion) {
             case 1:
                 {
-                    dataSizePelicula = countDataLinesInCSV(MOVIES_FILE);
-                    if(dataSizePelicula == -1) {
-                        cerr << "No se pudo cargar el data set de " << MOVIES_FILE << "\n";
+                    dataSize = countDataLinesInCSV(MOVIES_FILE) + countDataLinesInCSV(SERIES_FILE);
+                    if(dataSize == -1) {
+                        cerr << "No se pudo cargar el data set de " << MOVIES_FILE << " o " << SERIES_FILE << "\n";
                         return 0;
                     }
 
-                    cout << "movies.csv tiene: " << dataSizePelicula << " entradas\n";
-                    peliculaArray = new(nothrow) Pelicula[dataSizePelicula];
-                    if(peliculaArray == nullptr) {
-                        cerr << "No hubo memoria para el arreglo de " << MOVIES_FILE << "\n";
+                    cout << "movies.csv y series.csv tienen: " << dataSize << " entradas en total\n";
+                    videoArray = new(nothrow) Video*[dataSize];
+                    if(videoArray == nullptr) {
+                        cerr << "No hubo memoria para el arreglo de videos\n";
                         return 0;
                     }
 
-                    if(!loadMoviesFromCSV(MOVIES_FILE, peliculaArray, dataSizePelicula)) {
+                    if(!loadVideosFromCSV(MOVIES_FILE, videoArray, dataSize)) {
                         cerr << "Error al cargar el data set de " << MOVIES_FILE << "\n";
-                        delete [] peliculaArray;
+                        delete [] videoArray;
                         return 0;
                     }
 
-
-                    dataSizeSerie = countDataLinesInCSV(SERIES_FILE);
-                    if(dataSizeSerie == -1) {
-                        cerr << "No se pudo cargar el data set de " << SERIES_FILE << "\n";
-                        return 0;
-                    }
-
-                    cout << "series.csv tiene: " << dataSizeSerie << " entradas\n";
-                    episodioArray = new(nothrow) Episodio[dataSizeSerie];
-                    if(episodioArray == nullptr) {
-                        cerr << "No hubo memoria para el arreglo de " << SERIES_FILE << "\n";
-                        return 0;
-                    }
-
-                    if(!loadSeriesFromCSV(SERIES_FILE, episodioArray, dataSizeSerie)) {
+                    if(!loadVideosFromCSV(SERIES_FILE, videoArray, dataSize)) {
                         cerr << "Error al cargar el data set de " << SERIES_FILE << "\n";
-                        delete [] episodioArray;
+                        delete [] videoArray;
                         return 0;
                     }
 
@@ -78,7 +61,7 @@ int main() {
 
             case 2:
                 {
-                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                    if (videoArray == nullptr) {
                         cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
@@ -110,15 +93,15 @@ int main() {
                                 break;
                         }
 
-                        for (int i = 0; i < dataSizePelicula; i++) {
-                            if (peliculaArray[i].getGenero() == genero) {
-                                peliculaArray[i].mostrar();
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getGenero() == genero) {
+                                videoArray[i]->mostrar(); // llamamos metodos en tiempo de ejecucion
                             }
                         }
 
-                        for (int i = 0; i < dataSizeSerie; i++) {
-                            if (episodioArray[i].getGenero() == genero) {
-                                episodioArray[i].mostrar();
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getGenero() == genero) {
+                                videoArray[i]->mostrar();
                             }
                         }
                     }
@@ -129,16 +112,16 @@ int main() {
                         cin >> seleccion_calificacion;
 
                         bool found = false;
-                        for (int i = 0; i < dataSizePelicula; i++) {
-                            if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
-                                peliculaArray[i].mostrar();
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
+                                videoArray[i]->mostrar();
                                 found = true;
                             }
                         }
 
-                        for (int i = 0; i < dataSizeSerie; i++) {
-                            if (episodioArray[i].getCalificacion() == seleccion_calificacion) {
-                                episodioArray[i].mostrar();
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
+                                videoArray[i]->mostrar();
                                 found = true;
                             }
                         }
@@ -151,7 +134,7 @@ int main() {
 
             case 3:
                 {
-                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                    if (videoArray == nullptr) {
                         cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
@@ -167,9 +150,9 @@ int main() {
                     cin.ignore();// Ignora el carácter de nueva línea que queda en el búfer de entrada después de usar cin. ya que puede causar problemas en la continuacion del codigo el no borrarlo 
 
                     bool found = false;
-                    for (int i = 0; i < dataSizeSerie; i++) {
-                        if (episodioArray[i].getNombre() == seleccion_serie && episodioArray[i].getCalificacion() == seleccion_calificacion) {
-                            episodioArray[i].mostrar();
+                    for (int i = 0; i < dataSize; i++) {
+                        if (videoArray[i]->getNombre() == seleccion_serie && videoArray[i]->getCalificacion() == seleccion_calificacion) {
+                            videoArray[i]->mostrar();
                             found = true;
                         }
                     }
@@ -182,7 +165,7 @@ int main() {
                 
             case 4:
                 {
-                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                    if (videoArray == nullptr) {
                         cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
@@ -192,9 +175,9 @@ int main() {
                     cin >> seleccion_calificacion;
 
                     bool found = false;
-                    for (int i = 0; i < dataSizePelicula; i++) {
-                        if (peliculaArray[i].getCalificacion() == seleccion_calificacion) {
-                            peliculaArray[i].mostrar();
+                    for (int i = 0; i < dataSize; i++) {
+                        if (videoArray[i]->getCalificacion() == seleccion_calificacion) {
+                            videoArray[i]->mostrar();
                             found = true;
                         }
                     }
@@ -207,7 +190,7 @@ int main() {
                 
             case 5:
                 {
-                    if (peliculaArray == nullptr || episodioArray == nullptr) {
+                    if (videoArray == nullptr) {
                         cout << "\nNo se han cargado los archivos, por favor cargue archivos para poder usar esta opcion" << endl;
                         break;
                     }
@@ -243,11 +226,11 @@ int main() {
 
                     if (tipo_video == 'p') {
                         bool found = false;
-                        for (int i = 0; i < dataSizePelicula; i++) {
-                            if (peliculaArray[i].getNombre() == nombre_video) {
-                                peliculaArray[i].setCalificacion(nueva_calificacion);
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getNombre() == nombre_video) {
+                                videoArray[i]->setCalificacion(nueva_calificacion);
                                 cout << "\nCalificacion actualizada con exito!" << endl;
-                                peliculaArray[i].mostrar();
+                                videoArray[i]->mostrar();
                                 found = true;
                                 break;
                             }  
@@ -258,11 +241,11 @@ int main() {
                     }
                     else if (tipo_video == 'e') {
                         bool found = false;
-                        for (int i = 0; i < dataSizeSerie; i++) {
-                            if (episodioArray[i].getNombre() == nombre_video && episodioArray[i].getTitulo() == titulo_episodio) {
-                                episodioArray[i].setCalificacion(nueva_calificacion);
+                        for (int i = 0; i < dataSize; i++) {
+                            if (videoArray[i]->getNombre() == nombre_video && videoArray[i]->getTitulo() == titulo_episodio) {
+                                videoArray[i]->setCalificacion(nueva_calificacion);
                                 cout << "\nCalificacion actualizada con exito!" << endl;
-                                episodioArray[i].mostrar();
+                                videoArray[i]->mostrar();
                                 found = true;
                                 break;
                             }

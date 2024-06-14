@@ -9,9 +9,9 @@ private:
 public: 
     Episodio(string titulo = "", int temporada = 0, string id = "", string nombre = "", string genero = "", int duracion = 0, float calificacion = 0.0);
 
-    string getTitulo();
-    int getTemporada();
-
+    string getTitulo() override;
+    virtual int getTemporada() override;
+    
     void mostrar() override; // Esta funcion va a sobreescribir la funcion virtual pura declarada en la clase base.
 
     void setEpisodioTitulo(string titulo);
